@@ -22,9 +22,6 @@ async function handler({
         throw new ApiError(httpStatus.BAD_REQUEST, CUSTOM_MESSAGE.USER_NOT_FOUND)
     }
 
-    if (userData.length == 0) {
-        throw new ApiError(httpStatus.BAD_REQUEST, CUSTOM_MESSAGE.USER_INFO_NOT_FOUND)
-    }
     return userData;
 }
 

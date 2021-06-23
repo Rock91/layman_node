@@ -1,13 +1,19 @@
 const express = require('express')
 
 const loginController = require('../../controllers/app/user/login')
+const verifyOtpController = require('../../controllers/app/user/verifyOtp')
+const reSendOtpController = require('../../controllers/app/user/reSendOtp')
 const logoutController = require('../../controllers/app/user/logout')
 
 const getProfileController = require('../../controllers/app/user/getProfile')
 const updateProfileController = require('../../controllers/app/user/updateProfile');
 
-const verifyOtpController = require('../../controllers/app/user/verifyOtp')
-const reSendOtpController = require('../../controllers/app/user/reSendOtp')
+const createAddressController = require('../../controllers/app/user/address/createAddress');
+const deleteAddressController = require('../../controllers/app/user/address/deleteAddress');
+const editAddressController = require('../../controllers/app/user/address/editAddress');
+const getAddressController = require('../../controllers/app/user/address/getAddress');
+const getAddressListController = require('../../controllers/app/user/address/getAddressList');
+const setDefaultAddressController = require('../../controllers/app/user/address/setDefaultAddress');
 
 const requestHandler = require('../../middlewares/requestHandler');
 
@@ -108,6 +114,104 @@ router.post('/updateProfile', requestHandler(updateProfileController));
  */
 router.get('/getProfile', requestHandler(getProfileController));
 
+/**
+ * API for create Address
+ * @route POST /app/auth/address/create
+ * @group APP Api [Auth]
+ * @param {createAddress.model} Data.body.required - create Address
+ * @returns {object} 200 - Successful
+ * @returns {Error}  default - Unexpected error
+ * @security JWT
+ */
+/**
+ * @typedef createAddress
+ * @property {string} address1 - Enter address1 [required] - eg: 414, xyz complex
+ * @property {string} address2 - Enter address2 [optional] - eg: near balachadi
+ * @property {number} pincode - Enter pincode [required] - eg: 396***
+ * @property {string} city - Enter city [required] - eg: surat
+ * @property {string} state - Enter state [required] - eg: gujarat
+ * @property {string} country - Enter country [required] - eg: india
+ * 
+ */
+router.post('/address/create', requestHandler(createAddressController));
 
+/**
+ * API for getProfile
+ * @route GET /app/auth/address/getAddressList
+ * @group APP Api [Auth]
+ * @returns {object} 200 - Successful
+ * @returns {Error}  default - Unexpected error
+ * @security JWT
+ */
+router.get('/address/getAddressList', requestHandler(getAddressListController));
+
+/**
+ * API for getAddress
+ * @route GET /app/auth/address/getAddress
+ * @group APP Api [Auth]
+ * @returns {object} 200 - Successful
+ * @returns {Error}  default - Unexpected error
+ * @security JWT
+ */
+
+/**
+ * @typedef getAddress
+ * @property {string} addressId - Enter addressId [required] - eg: 5c51cs54***
+ * 
+ */
+router.get('/address/getAddress', requestHandler(getAddressController));
+/**
+ * API for update Address
+ * @route POST /app/auth/address/update
+ * @group APP Api [Auth]
+ * @param {updateAddress.model} Data.body.required - create Address
+ * @returns {object} 200 - Successful
+ * @returns {Error}  default - Unexpected error
+ * @security JWT
+ */
+/**
+ * @typedef updateAddress
+ * @property {string} addressId - Enter addressId [required] - eg: 5c51cs54***
+ * @property {string} address1 - Enter address1 [required] - eg: 414, xyz complex
+ * @property {string} address2 - Enter address2 [optional] - eg: near balachadi
+ * @property {number} pincode - Enter pincode [required] - eg: 396***
+ * @property {string} city - Enter city [required] - eg: surat
+ * @property {string} state - Enter state [required] - eg: gujarat
+ * @property {string} country - Enter country [required] - eg: india
+ * 
+ */
+router.post('/address/update', requestHandler(editAddressController));
+
+/**
+ * API for delete Address
+ * @route POST /app/auth/address/delete
+ * @group APP Api [Auth]
+ * @param {deleteAddress.model} Data.body.required - create Address
+ * @returns {object} 200 - Successful
+ * @returns {Error}  default - Unexpected error
+ * @security JWT
+ */
+/**
+ * @typedef deleteAddress
+ * @property {string} addressId - Enter addressId [required] - eg: 5c51cs54***
+ * 
+ */
+router.post('/address/delete', requestHandler(deleteAddressController));
+
+/**
+ * API for setDefault Address
+ * @route POST /app/auth/address/setDefault
+ * @group APP Api [Auth]
+ * @param {setDefaultAddress.model} Data.body.required - create Address
+ * @returns {object} 200 - Successful
+ * @returns {Error}  default - Unexpected error
+ * @security JWT
+ */
+/**
+ * @typedef setDefaultAddress
+ * @property {string} addressId - Enter addressId [required] - eg: 5c51cs54***
+ * 
+ */
+router.post('/address/setDefault', requestHandler(setDefaultAddressController));
 
 module.exports = router;

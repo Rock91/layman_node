@@ -18,6 +18,7 @@ module.exports = CUSTOM_MESSAGE = {
   "OTP_ALREADY_VERIFYRD": "Your OTP Already Verify",
   "RESEND_OTP": "Some error getting to resend OTP!",
   "YOU_ARE_BLOCKED": "you are Blocked!",
+  "USER_ADDRESS_NOT_FOUND": "User Address Not Found!",
 
 
   "LAT_AND_LONG_REQUIRE": "longitude and latitude both required!",

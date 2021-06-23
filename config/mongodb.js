@@ -7,8 +7,10 @@ const models = {
     users: 'users',
     otps: 'otps',
     counters: "counters",
+    tokens: 'tokens',
+    address:"address",
+    medicalPatients: "medicalPatients",
     posts: 'posts',
-    tokens: 'tokens'
 };
 console.log("config.mongoose.url-----", config.mongoose.url)
 const dbClient = mongoose.createConnection(config.mongoose.url, config.mongoose.options);
