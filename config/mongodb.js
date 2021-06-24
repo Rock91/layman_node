@@ -8,8 +8,9 @@ const models = {
     otps: 'otps',
     counters: "counters",
     tokens: 'tokens',
-    address:"address",
+    address: "address",
     medicalPatients: "medicalPatients",
+    medicalStores: "medicalStores",
     posts: 'posts',
 };
 console.log("config.mongoose.url-----", config.mongoose.url)
@@ -225,6 +226,7 @@ async function findAndModify({
 }) {
     return await getModel(db, model).findAndModify(query, update, options).lean();
 }
+
 function createDocument({
     db,
     model,
@@ -260,11 +262,23 @@ function Model(db, modelName) {
 
 }
 
-Model.prototype.find = async function ({ query, select, limit, skip, sort, populate }) {
+Model.prototype.find = async function ({
+    query,
+    select,
+    limit,
+    skip,
+    sort,
+    populate
+}) {
     return await this.model.find(query).select(select).populate(populate).limit(limit).skip(skip).sort(sort).lean().exec();
 }
 
-Model.prototype.findOne = async function ({ query, select, sort, populate }) {
+Model.prototype.findOne = async function ({
+    query,
+    select,
+    sort,
+    populate
+}) {
     try {
 
         return await this.model.findOne(query).select(select).populate(populate).sort(sort).lean().exec();
@@ -273,99 +287,182 @@ Model.prototype.findOne = async function ({ query, select, sort, populate }) {
     }
 }
 
-Model.prototype.insertOne = async function ({ document, options }) {
+Model.prototype.insertOne = async function ({
+    document,
+    options
+}) {
     return await this.model.create(document, options);
 }
 
-Model.prototype.insertMany = async function ({ documents, options }) {
+Model.prototype.insertMany = async function ({
+    documents,
+    options
+}) {
     return await this.model.insertMany(documents, options);
 }
 
-Model.prototype.updateOne = async function ({ query, update, options }) {
+Model.prototype.updateOne = async function ({
+    query,
+    update,
+    options
+}) {
     return await this.model.updateOne(query, update, options).lean();
 }
 
-Model.prototype.updateMany = async function ({ query, update, options }) {
+Model.prototype.updateMany = async function ({
+    query,
+    update,
+    options
+}) {
     return await this.model.updateMany(query, update, options).lean();
 }
 
-Model.prototype.deleteOne = async function ({ query, options }) {
+Model.prototype.deleteOne = async function ({
+    query,
+    options
+}) {
     return await this.model.deleteOne(query, options);
 }
 
-Model.prototype.deleteMany = async function ({ query, options }) {
+Model.prototype.deleteMany = async function ({
+    query,
+    options
+}) {
     return await this.model.deleteMany(query, options);
 }
 
-Model.prototype.distinct = async function ({ field, query }) {
+Model.prototype.distinct = async function ({
+    field,
+    query
+}) {
     return await this.model.distinct(field, query);
 }
 
-Model.prototype.aggregate = async function ({ pipeline, options }) {
+Model.prototype.aggregate = async function ({
+    pipeline,
+    options
+}) {
     return await this.model.aggregate(pipeline).exec();
 }
 
-Model.prototype.aggregate2 = async function ({ pipeline, populate, options }) {
+Model.prototype.aggregate2 = async function ({
+    pipeline,
+    populate,
+    options
+}) {
     return await this.model.aggregate(pipeline).populate(populate).exec();
 }
 
-Model.prototype.countDocuments = async function ({ query }) {
+Model.prototype.countDocuments = async function ({
+    query
+}) {
     return await this.model.countDocuments(query).lean();
 }
 
-Model.prototype.findByIdAndUpdate = async function ({ query, update, options }) {
+Model.prototype.findByIdAndUpdate = async function ({
+    query,
+    update,
+    options
+}) {
     return await this.model.findByIdAndUpdate({
         _id: ObjectId(query)
     }, update, options).lean();
 }
 
-Model.prototype.findAndModify = async function ({ query, update, options }) {
+Model.prototype.findAndModify = async function ({
+    query,
+    update,
+    options
+}) {
     console.log("?--------------------", query, update, options);
     return await this.model.findAndModify(query, update, options).lean();
 }
-Model.prototype.save = async function ({ document, options }) {
+Model.prototype.save = async function ({
+    document,
+    options
+}) {
     return await this.model.create(document, options);
 }
 
-Model.prototype.findByIdAndDelete = async function ({ id, options }) {
+Model.prototype.findByIdAndDelete = async function ({
+    id,
+    options
+}) {
     return await this.model.deleteOne({
         _id: ObjectId(id)
     }, options);
 }
 
-Model.prototype.findOneAndUpdate = async function ({ query, update, options, populate }) {
+Model.prototype.findOneAndUpdate = async function ({
+    query,
+    update,
+    options,
+    populate
+}) {
     return await this.model.findOneAndUpdate(query, update, options).populate(populate).lean();
 }
 
-Model.prototype.findOneAndDelete = async function ({ query, options }) {
+Model.prototype.findOneAndDelete = async function ({
+    query,
+    options
+}) {
     return await this.model.findOneAndDelete(query, options);
 }
 
-Model.prototype.createDocument = function ({ object }) {
+Model.prototype.createDocument = function ({
+    object
+}) {
     return this.model(object);
 }
 
-Model.prototype.paginate = async function ({ query, select, populate, limit = 20, page = 1, sort }) {
+Model.prototype.paginate = async function ({
+    query,
+    select,
+    populate,
+    limit = 20,
+    page = 1,
+    sort
+}) {
     const skip = (page - 1) * limit;
 
 
     const [totalResults, results] = await Promise.all([
         this.countDocuments({
-            ...(query && { query })
+            ...(query && {
+                query
+            })
         }),
         this.find({
-            ...(query && { query }),
-            ...(select && { select }),
-            ...(populate && { populate }),
-            ...(limit && { limit }),
-            ...(skip && { skip }),
-            ...(sort && { sort })
+            ...(query && {
+                query
+            }),
+            ...(select && {
+                select
+            }),
+            ...(populate && {
+                populate
+            }),
+            ...(limit && {
+                limit
+            }),
+            ...(skip && {
+                skip
+            }),
+            ...(sort && {
+                sort
+            })
         })
     ])
 
     const totalPages = Math.ceil(totalResults / limit);
 
-    return { results, page, limit, totalPages, totalResults };
+    return {
+        results,
+        page,
+        limit,
+        totalPages,
+        totalResults
+    };
 }
 
 const isValidObjectId = (str) => {

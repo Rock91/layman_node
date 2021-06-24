@@ -65,8 +65,8 @@ const medicalPatientSchema = mongoose.Schema({
         ref: 'address'
     },
     uploadedDoc:{ 
-      type : [{  type: String,sparse: true }],
-        default: []
+      type : [{  type: String ,sparse: true }],
+      default: []
     },
     patient : patientSchema,
     cancleByStorre: {
