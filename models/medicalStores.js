@@ -1,7 +1,24 @@
 const mongoose = require("mongoose");
 
-const addressSchema = mongoose.Schema(
+const proofSchema = mongoose.Schema({
+  type: {
+    type: String,
+    index: true,
+    default: "card",
+    enum: ["card", "gst", "certificate", "electricCityProf"],
+  },
+  source: {
+    type: String,
+  },
+});
+const medicalStoreSchema = mongoose.Schema(
   {
+    storeName: {
+      type: String,
+      trim: true,
+      minlength: 1,
+      maxlength: 50,
+    },
     address1: {
       type: String,
       trim: true,
@@ -42,34 +59,24 @@ const addressSchema = mongoose.Schema(
       trim: true,
       lowercase: true,
     },
-  },
-  { _id: false }
-);
-const medicalStoreSchema = mongoose.Schema(
-  {
-    firstName: {
-      type: String,
-      trim: true,
-      minlength: 1,
-      maxlength: 50,
-      // default: ''
-    },
-    lastName: {
-      type: String,
-      trim: true,
-      minlength: 1,
-      maxlength: 50,
-      // default: ''
-    },
-    storeName: {
+    ownerName: {
       type: String,
       trim: true,
       minlength: 1,
       maxlength: 50,
     },
-    address: {
-      type: addressSchema,
-      default: [],
+    ownerDOB: {
+      type: String,
+      trim: true,
+      minlength: 1,
+      maxlength: 50,
+    },
+    proof: [proofSchema],
+    email: {
+      type: String,
+      trim: true,
+      minlength: 1,
+      maxlength: 50,
     },
     mobileNumber: {
       type: Number,
@@ -78,18 +85,6 @@ const medicalStoreSchema = mongoose.Schema(
       index: true,
       unique: true,
       sparse: true,
-    },
-    email: {
-      type: String,
-      trim: true,
-      lowercase: true,
-      index: true,
-      unique: true,
-      sparse: true,
-    },
-    password: {
-      type: String,
-      trim: true,
     },
     isVerified: {
       type: Boolean,
@@ -107,6 +102,7 @@ const medicalStoreSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    crby: { type: mongoose.Schema.Types.ObjectId, ref: "medicalUsers" },
   },
   {
     timestamps: true,

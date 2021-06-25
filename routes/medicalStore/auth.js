@@ -6,12 +6,7 @@ const logoutController = require("../../controllers/medicalStore/user/logout");
 const getProfileController = require("../../controllers/medicalStore/user/getProfile");
 const updateProfileController = require("../../controllers/medicalStore/user/updateProfile");
 
-const createAddressController = require("../../controllers/app/user/address/createAddress");
-const deleteAddressController = require("../../controllers/app/user/address/deleteAddress");
-const editAddressController = require("../../controllers/app/user/address/editAddress");
-const getAddressController = require("../../controllers/app/user/address/getAddress");
-const getAddressListController = require("../../controllers/app/user/address/getAddressList");
-const setDefaultAddressController = require("../../controllers/app/user/address/setDefaultAddress");
+const addMedicalManagerController = require("../../controllers/medicalStore/user/addManager");
 
 const requestHandler = require("../../middlewares/requestHandler");
 
@@ -99,103 +94,21 @@ router.get("/getProfile", requestHandler(getProfileController));
 router.post("/updateProfile", requestHandler(updateProfileController));
 
 /**
- * API for create Address
- * @route POST /medicalStore/auth/address/create
+ * API for add Medical Manager for Medical Store
+ * @route POST /medicalStore/auth/addMedicalManager
  * @group Medical Store Api [Auth]
- * @param {createAddress.model} Data.body.required - create Address
+ * @param {addMedicalManager.model} Data.body.required - add Medical Manager for Medical Store
  * @returns {object} 200 - Successful
  * @returns {Error}  default - Unexpected error
- * @security JWT
  */
 /**
- * @typedef createAddress
- * @property {string} address1 - Enter address1 [required] - eg: 414, xyz complex
- * @property {string} address2 - Enter address2 [optional] - eg: near balachadi
- * @property {number} pincode - Enter pincode [required] - eg: 396***
- * @property {string} city - Enter city [required] - eg: surat
- * @property {string} state - Enter state [required] - eg: gujarat
- * @property {string} country - Enter country [required] - eg: india
- *
- */
-router.post("/address/create", requestHandler(createAddressController));
-
-/**
- * API for getProfile
- * @route GET /medicalStore/auth/address/getAddressList
- * @group Medical Store Api [Auth]
- * @returns {object} 200 - Successful
- * @returns {Error}  default - Unexpected error
- * @security JWT
- */
-router.get("/address/getAddressList", requestHandler(getAddressListController));
-
-/**
- * API for getAddress
- * @route GET /medicalStore/auth/address/getAddress
- * @group Medical Store Api [Auth]
- * @returns {object} 200 - Successful
- * @returns {Error}  default - Unexpected error
- * @security JWT
+ * @typedef addMedicalManager
+ * @property {email} email - User email [required] - eg: ronak.sutariya@mail.in
+ * @property {string} firstName - User firstName [required] - eg: ronak
+ * @property {string} lastName - User lastName [required] - eg: sutariya
+ * @property {string} password - User password [required] - eg: ronak485
  */
 
-/**
- * @typedef getAddress
- * @property {string} addressId - Enter addressId [required] - eg: 5c51cs54***
- *
- */
-router.get("/address/getAddress", requestHandler(getAddressController));
-/**
- * API for update Address
- * @route POST /medicalStore/auth/address/update
- * @group Medical Store Api [Auth]
- * @param {updateAddress.model} Data.body.required - create Address
- * @returns {object} 200 - Successful
- * @returns {Error}  default - Unexpected error
- * @security JWT
- */
-/**
- * @typedef updateAddress
- * @property {string} addressId - Enter addressId [required] - eg: 5c51cs54***
- * @property {string} address1 - Enter address1 [required] - eg: 414, xyz complex
- * @property {string} address2 - Enter address2 [optional] - eg: near balachadi
- * @property {number} pincode - Enter pincode [required] - eg: 396***
- * @property {string} city - Enter city [required] - eg: surat
- * @property {string} state - Enter state [required] - eg: gujarat
- * @property {string} country - Enter country [required] - eg: india
- *
- */
-router.post("/address/update", requestHandler(editAddressController));
-
-/**
- * API for delete Address
- * @route POST /medicalStore/auth/address/delete
- * @group Medical Store Api [Auth]
- * @param {deleteAddress.model} Data.body.required - create Address
- * @returns {object} 200 - Successful
- * @returns {Error}  default - Unexpected error
- * @security JWT
- */
-/**
- * @typedef deleteAddress
- * @property {string} addressId - Enter addressId [required] - eg: 5c51cs54***
- *
- */
-router.post("/address/delete", requestHandler(deleteAddressController));
-
-/**
- * API for setDefault Address
- * @route POST /medicalStore/auth/address/setDefault
- * @group Medical Store Api [Auth]
- * @param {setDefaultAddress.model} Data.body.required - create Address
- * @returns {object} 200 - Successful
- * @returns {Error}  default - Unexpected error
- * @security JWT
- */
-/**
- * @typedef setDefaultAddress
- * @property {string} addressId - Enter addressId [required] - eg: 5c51cs54***
- *
- */
-router.post("/address/setDefault", requestHandler(setDefaultAddressController));
+router.post("/addMedicalManager", requestHandler(addMedicalManagerController));
 
 module.exports = router;

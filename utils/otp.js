@@ -1,6 +1,6 @@
 // const aws = require('aws-sdk');
 
-const config = require('../config/config');
+const config = require("../config/config");
 
 // let awsConfig = {
 //     region: config.AWS.region,
@@ -13,13 +13,13 @@ const config = require('../config/config');
 // const SNS = new aws.SNS();
 
 function generateOTP(otpLength) {
-    var digits = '0123456789';
-    var otp = '';
-    for (let i = 1; i <= otpLength; i++) {
-        var index = Math.floor(Math.random() * (digits.length));
-        otp = otp + digits[index];
-    }
-    return otp;
+  var digits = "0123456789";
+  var otp = "";
+  for (let i = 1; i <= otpLength; i++) {
+    var index = Math.floor(Math.random() * digits.length);
+    otp = otp + digits[index];
+  }
+  return otp;
 }
 
 // function sendOTP(to, msg) {
@@ -105,7 +105,7 @@ function generateOTP(otpLength) {
 //     })
 // }
 module.exports = {
-    generateOTP,
-    // sendOTP,
-    // sendforgetPasswordOTP
-}
+  generateOTP,
+  // sendOTP,
+  // sendforgetPasswordOTP
+};

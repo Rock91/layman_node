@@ -9,7 +9,7 @@ const CUSTOM_MESSAGE = require("../../../utils/message");
 async function handler({ user }) {
   let { userId } = user;
 
-  let userData = await mongo.ggDb.model(mongo.models.medicalStores).findOne({
+  let userData = await mongo.ggDb.model(mongo.models.medicalUsers).findOne({
     query: {
       _id: userId,
     },

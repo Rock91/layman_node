@@ -20,10 +20,8 @@ const payload = {
 async function handler({ body }) {
   let { firstName, lastName, mobileNumber, email, password, storeName } = body;
 
-  if (!UserInfo)
-    throw new ApiError(httpStatus.BAD_REQUEST, CUSTOM_MESSAGE.USER_NOT_FOUND);
   if (email) {
-    let emailInfo = await mongo.ggDb.model(mongo.models.medicalStores).findOne({
+    let emailInfo = await mongo.ggDb.model(mongo.models.medicalUsers).findOne({
       query: { email: email },
     });
     if (emailInfo)
@@ -34,7 +32,7 @@ async function handler({ body }) {
   }
   if (mobileNumber) {
     let mobileNumberInfo = await mongo.ggDb
-      .model(mongo.models.medicalStores)
+      .model(mongo.models.medicalUsers)
       .findOne({
         query: { mobileNumber: mobileNumber },
       });
@@ -45,9 +43,23 @@ async function handler({ body }) {
       );
   }
 
-  let updateRes = await mongo.ggDb.model(mongo.models.medicalStores).insertOne({
+  let updateRes = await mongo.ggDb.model(mongo.models.medicalUsers).insertOne({
     document: { firstName, lastName, mobileNumber, email, password, storeName },
   });
+  let MedicalStore = await mongo.ggDb
+    .model(mongo.models.medicalStores)
+    .insertOne({
+      document: {
+        storeName,
+        crby: updateRes._id,
+      },
+    });
+  updateRes = await mongo.ggDb
+    .model(mongo.models.medicalUsers)
+    .findOneAndUpdate({
+      query: { _id: updateRes._id },
+      update: { medicalStore: MedicalStore._id },
+    });
   updateRes.msg = CUSTOM_MESSAGE.MEDICAL_PROFILE_CREATED;
   return updateRes;
 }

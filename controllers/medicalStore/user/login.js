@@ -19,7 +19,7 @@ const payload = {
 async function handler({ body }) {
   let { email, password } = body;
 
-  let user = await mongo.ggDb.model(mongo.models.medicalStores).findOne({
+  let user = await mongo.ggDb.model(mongo.models.medicalUsers).findOne({
     query: {
       email: email,
     },

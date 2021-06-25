@@ -41,7 +41,6 @@ module.exports = CUSTOM_MESSAGE = {
   PLEASE_SEND_VALID_DATA: "Please Send Valid Data!!",
   PROFILE_INFO_UPDATED: "Profile Info Updated!!",
 
-  SDK_SPACE_NOT_ALLOWED_IN_USERNAME: "Extra space not allowed in username",
   SOMETHING_GOES_WRONG: "Something goes wrong!",
   SOMETHING_IS_WRONG: "Somthing is Wrong!",
   IMAGE_UPLOAD_SUCESSFULLY: "Image upload Done",
@@ -49,7 +48,16 @@ module.exports = CUSTOM_MESSAGE = {
   USER_PROFILE_UPDATED: "User Profile Updated!",
   NO_USER_FOUND: "User not Found!",
 
+  MEDICINE_FORM_NOT_FOUND: "Medicine Form Not found!",
+  MEDICINE_FORM_SUBMITED: "Medicine Form Submitted!",
+  PATIENT_CREATED: "Patient Created!",
+
   MEDICAL_PROFILE_CREATED: "Medical Profile Created!",
+  MEDICAL_STORE_NOT_FOUND: "Medical Store not Found!",
+  YOU_ARE_NOT_ABLE_TO_CREATE_MANAGER: "You are not able to create Manager!",
+  MEDICAL_PROFILE_FOUND: "Medical Profile!",
+  MEDICAL_MANAGER_CREATED: "Medical Manager Created!",
+
   USER_INFO_FOUND: "User_info_Found!",
 };
 
