@@ -21,6 +21,26 @@ const payload = {
     state: joi.string(),
     country: joi.string(),
     mobileNumber: joi.number(),
+    timings: joi
+      .array()
+      .items
+      // joi.object().keys({
+      //   day: joi
+      //     .string()
+      //     .valid([
+      //       "MONDAY",
+      //       "TUESDAY",
+      //       "WEDNESDAY",
+      //       "THURSDAY",
+      //       "FRIDAY",
+      //       "SATURDAY",
+      //       "SUNDAY",
+      //     ])
+      //     .description("MONDAY"),
+      //   openTime: joi.string().optional().description("HH:mm Format"),
+      //   closeTime: joi.string().optional().description("HH:mm Format"),
+      // })
+      (),
   }),
 };
 async function handler({ body, user }) {

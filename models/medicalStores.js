@@ -11,6 +11,23 @@ const proofSchema = mongoose.Schema({
     type: String,
   },
 });
+
+var Timings = mongoose.Schema({
+  day: {
+    type: String,
+    enum: [
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+      "SUNDAY",
+    ],
+  },
+  openTime: { type: String, default: null },
+  closeTime: { type: String, default: null },
+});
 const medicalStoreSchema = mongoose.Schema(
   {
     storeName: {
@@ -72,6 +89,7 @@ const medicalStoreSchema = mongoose.Schema(
       maxlength: 50,
     },
     proof: [proofSchema],
+    timings: { type: [Timings], default: [] },
     email: {
       type: String,
       trim: true,

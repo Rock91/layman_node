@@ -12,6 +12,7 @@ const models = {
   medicalPatients: "medicalPatients",
   medicalStores: "medicalStores",
   medicalUsers: "medicalUsers",
+  medicines: "medicines",
   posts: "posts",
 };
 console.log("config.mongoose.url-----", config.mongoose.url);

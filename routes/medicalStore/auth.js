@@ -6,8 +6,6 @@ const logoutController = require("../../controllers/medicalStore/user/logout");
 const getProfileController = require("../../controllers/medicalStore/user/getProfile");
 const updateProfileController = require("../../controllers/medicalStore/user/updateProfile");
 
-const addMedicalManagerController = require("../../controllers/medicalStore/user/addManager");
-
 const requestHandler = require("../../middlewares/requestHandler");
 
 const router = express.Router();
@@ -92,23 +90,5 @@ router.get("/getProfile", requestHandler(getProfileController));
  * @property {number} mobileNumber - Enter mobileNumber [optional] - eg: 95659896
  */
 router.post("/updateProfile", requestHandler(updateProfileController));
-
-/**
- * API for add Medical Manager for Medical Store
- * @route POST /medicalStore/auth/addMedicalManager
- * @group Medical Store Api [Auth]
- * @param {addMedicalManager.model} Data.body.required - add Medical Manager for Medical Store
- * @returns {object} 200 - Successful
- * @returns {Error}  default - Unexpected error
- */
-/**
- * @typedef addMedicalManager
- * @property {email} email - User email [required] - eg: ronak.sutariya@mail.in
- * @property {string} firstName - User firstName [required] - eg: ronak
- * @property {string} lastName - User lastName [required] - eg: sutariya
- * @property {string} password - User password [required] - eg: ronak485
- */
-
-router.post("/addMedicalManager", requestHandler(addMedicalManagerController));
 
 module.exports = router;

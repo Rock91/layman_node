@@ -38,6 +38,18 @@ async function handler({ body, user }) {
       CUSTOM_MESSAGE.YOU_ARE_NOT_ABLE_TO_CREATE_MANAGER
     );
   }
+
+  if (email) {
+    let emailInfo = await mongo.ggDb.model(mongo.models.medicalUsers).findOne({
+      query: { email: email },
+    });
+    if (emailInfo)
+      throw new ApiError(
+        httpStatus.BAD_REQUEST,
+        CUSTOM_MESSAGE.EMAIL_ALREADY_EXISTS
+      );
+  }
+
   let addMedicalManager = await mongo.ggDb
     .model(mongo.models.medicalUsers)
     .insertOne({

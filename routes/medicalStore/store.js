@@ -12,9 +12,9 @@ router.get("/", (req, res) => {
 });
 
 /**
- * API for get Medical Info
+ * API for get Medical Store Info
  * @route GET /medicalStore/store/getMedicalInfo
- * @group Medical Store Api [Auth]
+ * @group Medical Store Api [Medical Store]
  * @returns {object} 200 - Successful
  * @returns {Error}  default - Unexpected error
  * @security JWT
@@ -24,7 +24,7 @@ router.get("/getMedicalInfo", requestHandler(getMedicalInfoController));
 /**
  * API for Update Medical Info
  * @route POST /medicalStore/store/updateMedicalInfo
- * @group Medical Store Api [Auth]
+ * @group Medical Store Api [Medical Store]
  * @param {updateMedicalProfile.model} Data.body.required - Update Profile
  * @returns {object} 200 - Successful
  * @returns {Error}  default - Unexpected error
@@ -46,6 +46,13 @@ router.get("/getMedicalInfo", requestHandler(getMedicalInfoController));
  * @property {string} state - Enter state [optional]
  * @property {string} country - Enter country [optional]
  * @property {number} mobileNumber - Enter mobileNumber [optional] - eg: 95659896
+ * @param {Timing.model} timings - Enter Timings of store [required] - {day:"MONDAY", openTime:"09:50",closeTime:"17:52"}
+ */
+/**
+ * @typedef Timing
+ * @property {string} day - Enter medicalStoreId [required] - "MONDAY"
+ * @property {string} openTime - Enter HH:mm [optional] - "09:20"
+ * @property {string} closeTime - Enter HH:mm [optional] - "15:56"
  */
 router.post("/updateMedicalInfo", requestHandler(editMedicalInfoController));
 module.exports = router;

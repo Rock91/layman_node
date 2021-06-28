@@ -48,15 +48,28 @@ module.exports = CUSTOM_MESSAGE = {
   USER_PROFILE_UPDATED: "User Profile Updated!",
   NO_USER_FOUND: "User not Found!",
 
+  MEDICINE_ORDER_NOT_FOUND: "Medicine Order not Found!",
+  MEDICINE_ORDER_FOUND: "Medicine Order Found!",
+  MEDICINE_ORDER_LIST: "Medicine Order list Found!",
+
   MEDICINE_FORM_NOT_FOUND: "Medicine Form Not found!",
   MEDICINE_FORM_SUBMITED: "Medicine Form Submitted!",
   PATIENT_CREATED: "Patient Created!",
+  YOU_NOT_HAVE_ACCESE_FOR_THIS_FEATURE: "You not have Accese for this feature!",
 
   MEDICAL_PROFILE_CREATED: "Medical Profile Created!",
   MEDICAL_STORE_NOT_FOUND: "Medical Store not Found!",
   YOU_ARE_NOT_ABLE_TO_CREATE_MANAGER: "You are not able to create Manager!",
+  MEDICINE_SUCCESSFULLY_ADDED: "Medicine Successfully Added!",
+  MEDICINE_NOT_FOUND: "Medicine not Found!",
+  MEDICINE_FOUND: "Medicine Found!",
+
   MEDICAL_PROFILE_FOUND: "Medical Profile!",
   MEDICAL_MANAGER_CREATED: "Medical Manager Created!",
+  MEDICAL_MANAGER_UPDATED: "Medical Manager Updated!",
+  MEDICAL_MANAGER_DELETED: "Medical Manager Deleted!",
+  MEDICAL_MANAGER_LIST_FOUND: "Medical Manager List Found!",
+  MEDICAL_MANAGER_NOT_FOUND: "Medical Manager not Found!",
 
   USER_INFO_FOUND: "User_info_Found!",
 };
