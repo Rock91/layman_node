@@ -11,6 +11,8 @@ const models = {
   address: "address",
   medicalPatients: "medicalPatients",
   medicalStores: "medicalStores",
+  medicineCarts: "medicineCarts",
+  medicineOrderSummarys: "medicineOrderSummarys",
   medicalUsers: "medicalUsers",
   medicines: "medicines",
   posts: "posts",

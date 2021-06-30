@@ -17,7 +17,7 @@ module.exports = CUSTOM_MESSAGE = {
   RESEND_OTP: "Some error getting to resend OTP!",
   YOU_ARE_BLOCKED: "you are Blocked!",
   USER_ADDRESS_NOT_FOUND: "User Address Not Found!",
-
+  USER_INFO_FOUND: "User_info_Found!",
   LAT_AND_LONG_REQUIRE: "longitude and latitude both required!",
   LOGOUT_SUCESSFULLY: "logout Succefully!",
   LOGIN_SUCCESFULLY: "login Succefully!",
@@ -61,6 +61,8 @@ module.exports = CUSTOM_MESSAGE = {
   MEDICAL_STORE_NOT_FOUND: "Medical Store not Found!",
   YOU_ARE_NOT_ABLE_TO_CREATE_MANAGER: "You are not able to create Manager!",
   MEDICINE_SUCCESSFULLY_ADDED: "Medicine Successfully Added!",
+  MEDICINE_SUCCESSFULLY_UPDATED: "Medicine Successfully Updated!",
+
   MEDICINE_NOT_FOUND: "Medicine not Found!",
   MEDICINE_FOUND: "Medicine Found!",
 
@@ -71,7 +73,9 @@ module.exports = CUSTOM_MESSAGE = {
   MEDICAL_MANAGER_LIST_FOUND: "Medical Manager List Found!",
   MEDICAL_MANAGER_NOT_FOUND: "Medical Manager not Found!",
 
-  USER_INFO_FOUND: "User_info_Found!",
+  CART_ITEM_NOT_FOUND: "Cart Item is Not Found!",
+  CART_DATA_FOUND: "Cart Data found!",
+  MEDICINE_REMOVED_FROM_CART: "Medicine Removed from Cart!",
 };
 
 // Enter_a_valid_email_username_or_password

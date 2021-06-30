@@ -46,5 +46,5 @@ async function handler({ body, users }) {
 module.exports = {
   payload,
   handler,
-  auth,
+  auth: true,
 };
